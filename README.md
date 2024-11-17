@@ -49,5 +49,5 @@ needs to understanded.
 
 stickToMouseMovement(timer, currenttime, stickvalue, mouse's active position control signal code)
 
-Little information: 0 and 1 are the x,y position controls of mouse and 11 is the scroll. Stick
+Little information about the mouse signal codes: 0 and 1 are the x,y position controls of mouse and 11 is the scroll. Stick
 value arrays are the analog informations from the joystick.
