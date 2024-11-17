@@ -1,6 +1,9 @@
 # joy2mice
 a C program to use a joystick as a mouse
 
+This program doesn't creates a mouse device, just reads signals from the joystick
+and convertes them somehow for writing it to a existing mouse device.
+
 ## Requirements
 
 - to run: linux, evdev
