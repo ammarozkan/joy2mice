@@ -90,7 +90,7 @@ conv_move(uint16_t code, uint32_t value)
 // mouse movement requires active movement, but analog sticks signals are "change" signals.
 // So, we need to have something to create active signals from those "change" signals.
 int
-stickToMouseMovement(struct timeval timer, struct timeval current, int stickvalue, struct input_event ev, unsigned int code)
+stickToMouseMovement(struct timeval timer, struct timeval current, int stickvalue, unsigned int code)
 {
 	// counter limit can be decreased when stick is getting higher for increasing the speed
 	// counter limit is the microseconds that should be passed for sending another signal of
@@ -113,7 +113,7 @@ stickToMouseMovement(struct timeval timer, struct timeval current, int stickvalu
 // some adjustments to work.
 int
 stickToMouseScroll(struct timeval timer, struct timeval current, int stickvalue,
-				   struct input_event ev, unsigned int code)
+				   unsigned int code)
 {
 	float counterlimit = 144000.0f;
 	if (sensitive) counterlimit *= SENSITIVITY_CONSTANT;
@@ -183,15 +183,15 @@ main()
 
 		// doing the x,y movement
 		for (unsigned int i = 0 ; i < 2 ; i += 1)
-			if(stickToMouseMovement(timers[i], current, laststick[i], ev, i)) gettimeofday(&(timers[i]), NULL);
+			if(stickToMouseMovement(timers[i], current, laststick[i], i)) gettimeofday(&(timers[i]), NULL);
 
 		// for holding the gamepad vertically, some original adjustments needs to be done for the other joystick.
-		if(stickToMouseMovement(timers[3], current, +laststick[3], ev, 1)) gettimeofday(&(timers[3]), NULL);
-		if(stickToMouseMovement(timers[4], current, -laststick[4], ev, 0)) gettimeofday(&(timers[4]), NULL);
+		if(stickToMouseMovement(timers[3], current, +laststick[3], 1)) gettimeofday(&(timers[3]), NULL);
+		if(stickToMouseMovement(timers[4], current, -laststick[4], 0)) gettimeofday(&(timers[4]), NULL);
 
 		// scrolling for vertical and horizontal controls
-		if(stickToMouseScroll(timers[5], current, -laststick[17], ev, 11)) gettimeofday(&(timers[5]), NULL);
-		if(stickToMouseScroll(timers[6], current, -laststick[16], ev, 11)) gettimeofday(&(timers[6]), NULL);
+		if(stickToMouseScroll(timers[5], current, -laststick[17], 11)) gettimeofday(&(timers[5]), NULL);
+		if(stickToMouseScroll(timers[6], current, -laststick[16], 11)) gettimeofday(&(timers[6]), NULL);
 
 
 
