@@ -22,6 +22,8 @@
 #define SENSITIVITY_CONSTANT 8.0f			// how much more sensitive it should become after
 											// pressing the "sensitive" button?
 
+#define STICK_DEADZONE 129					// Will ignore stick's value until STICK_DEADZONE (max is INT16_MAX)
+
 // I want to reach them from outside of the main function
 int js; // joystick file definitor
 int ms; // mouse file definitor
@@ -99,7 +101,7 @@ stickToMouseMovement(struct timeval timer, struct timeval current, int stickvalu
 	if(sensitive) counterlimit *= SENSITIVITY_CONSTANT;
 	int timestate = (float)(current.tv_usec - timer.tv_usec) > counterlimit || (current.tv_sec - timer.tv_sec) > 0;
 
-	if (abs(stickvalue) > 128 && timestate) {
+	if (abs(stickvalue) > STICK_DEADZONE && timestate) {
 		float fvalue = 5.0f * (float)stickvalue / (float)INT16_MAX;
 		//if(sensitive) fvalue *= 0.25f;
 		int value = (int)fvalue;
