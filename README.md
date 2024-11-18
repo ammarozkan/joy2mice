@@ -40,7 +40,7 @@ used for scrolling.
 
 ### Easy Changable Customization
 
-Line 17, 20, 22 has some definitions with their meanings.
+Line 17, 20, 22, 25 has some definitions with their meanings.
 
 ### Direct Source Code Customization
 
